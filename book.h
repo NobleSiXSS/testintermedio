@@ -44,6 +44,7 @@ public:
     void setAvailable(bool available);
 
     void setCopyrightDate(const Date &copyrightDate);
+    void setCopyrightDate(const std::string &copyrightDate);
 
     Date copyrightDate() const;
 };

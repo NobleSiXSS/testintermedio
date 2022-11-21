@@ -125,6 +125,10 @@ void Book::setCopyrightDate(const Date &copyrightDate) {
     this->copyrightDate_ = copyrightDate;
 }
 
+void Book::setCopyrightDate(const std::string &copyrightDate) {
+    this->copyrightDate_ = Date(copyrightDate);
+}
+
 std::ostream& operator<<(std::ostream& output, const Book& bookObj) {
     return output << bookObj.title() << std::endl << bookObj.author() << std::endl << bookObj.ISBN() << std::endl << bookObj.copyrightDate();
 }
