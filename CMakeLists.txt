@@ -3,4 +3,4 @@ project(testintermedio)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(testintermedio main.cpp book.h date.h book.cpp)
+add_executable(testintermedio main.cpp book.h date.h book.cpp date.cpp)

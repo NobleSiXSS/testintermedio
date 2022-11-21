@@ -1,32 +1,32 @@
-//
-// Created by Halo on 16/11/2022.
-//
-#include "iostream"
+#include <iostream>
+
 #ifndef TESTINTERMEDIO_DATE_H
 #define TESTINTERMEDIO_DATE_H
 
 
 class Date {
 private:
-    int d; // day
-    int m; // month
-    int y; // year
-
-    bool is_valid();
+    int day_{};
+    int month_{};
+    int year_{};
+    static bool is_valid(int y, int m, int d);
+    //std::vector<std::string> split(string str, char del);
 
 public:
-    class Invalid{};
+    
+    //costruttore di default
     Date();
-
-    Date(int year, int month, int day);
+    
+    //costruttore
+    Date(int y, int m, int d);
+    Date(std::string date);
+    
+    int year() const;
     int month() const;
     int day() const;
-    int year() const;
-
-    //int Day()
+    
 };
 
-std::ostream& operator<<(std::ostream& output, const Date& dateObj);
-
+std::ostream& operator<<(std::ostream& output, const Date& dateToPrint);
 
 #endif //TESTINTERMEDIO_DATE_H
