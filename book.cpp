@@ -6,9 +6,14 @@
 #include "date.h"
 #include "iostream"
 
-Book::Book() : available_{} {};
+// Costruttori
+Book::Book() {
+    this->available_ = true;
+};
+
 
 Book::Book(std::string authorName, std::string authorSurname, std::string title, std::string copyrightDate, std::string ISBN) {
+    // se isValidISBN restituisce false lancio un errore
     if(!isValidISBN(ISBN)) {
         throw std::invalid_argument("ISBN format is not correct. NNN-NNN-NNN-C");
     }
@@ -21,7 +26,8 @@ Book::Book(std::string authorName, std::string authorSurname, std::string title,
 }
 
 Book::Book(std::string authorName, std::string authorSurname, std::string title, Date copyrightDate, std::string ISBN) {
-   if(!isValidISBN(ISBN)) {
+    // se isValidISBN restituisce false lancio un errore
+    if(!isValidISBN(ISBN)) {
         throw std::invalid_argument("ISBN format is not correct. NNN-NNN-NNN-C");
     }
     this->authorName_ = authorName;
@@ -33,6 +39,7 @@ Book::Book(std::string authorName, std::string authorSurname, std::string title,
 }
 
 Book::Book(std::string authorName, std::string authorSurname, std::string title, std::string ISBN) {
+    // se isValidISBN restituisce false lancio un errore
     if(!isValidISBN(ISBN)) {
         throw std::invalid_argument("ISBN format is not correct. NNN-NNN-NNN-C");
     }
@@ -43,6 +50,7 @@ Book::Book(std::string authorName, std::string authorSurname, std::string title,
     this->available_ = true;
 }
 
+// Funzioni getter
 std::string Book::ISBN() const {
     return this->ISBN_;
 }
@@ -66,20 +74,23 @@ Date Book::copyrightDate() const {
 bool Book::available() const {
     return this->available_;
 }
+// Funzione statica che permette di controllare che un codice ISBN sia valido, esempio -> isValidISBN("887-521-837-4")
+bool Book::isValidISBN(const std::string& ISBNToCheck) {
 
-bool Book::isValidISBN(std::string& ISBNToCheck) {
-
+    // Controllo che la lunghezza dell'ISBN sia di 13 caratteri e che le 4 parti dell'ISBN siano divise dal carattere '-', in caso contrario ritorno false
     if(ISBNToCheck.length() != 13 || ISBNToCheck[3] != '-' || ISBNToCheck[7] != '-' || ISBNToCheck[11] != '-') {
         return false;
     }
 
-    if(!((ISBNToCheck[12] >= 65 && ISBNToCheck[12] <= 90) || (ISBNToCheck[12] >= 97 && ISBNToCheck[12] <= 122) || (ISBNToCheck[12] >= 48 && ISBNToCheck[12]))) {
+    // Controllo che l'ultimo carattere sia una lettera o un numero, in caso contrario ritorno false
+    if(!((ISBNToCheck[12] >= 65 && ISBNToCheck[12] <= 90) || (ISBNToCheck[12] >= 97 && ISBNToCheck[12] <= 122) || (ISBNToCheck[12] >= 48 && ISBNToCheck[12] <= 57))) {
         return false;
     }
 
+    // Controllo che le prime 3 parti NNN dell'ISBN siano formate esclusivamente da numeri, in caso contrario restituisco false
     int i;
     for(i = 0; i < 3; i++) {
-        if(!(int(ISBNToCheck[i]) >= 48 && int(ISBNToCheck[i]) <= 57)) {
+        if(!(ISBNToCheck[i] >= 48 && ISBNToCheck[i] <= 57)) {
             return false;
         }
     }
@@ -94,14 +105,19 @@ bool Book::isValidISBN(std::string& ISBNToCheck) {
         }
     }
 
+    // Se l'esecuzione è arrivata a questo punto significa che l'ISBN è nel formato corretto, quindi restituisco true
     return true;
 }
 
+// Funzioni setter
 void Book::setAvailability(bool isAvailable) {
     this->available_ = isAvailable;
 }
 
 void Book::setIsbn(const std::string &isbn) {
+    if(!isValidISBN(isbn)) {
+        throw std::invalid_argument("ISBN format is not correct. NNN-NNN-NNN-C");
+    }
     this->ISBN_ = isbn;
 }
 
@@ -126,17 +142,20 @@ void Book::setCopyrightDate(const Date &copyrightDate) {
 }
 
 void Book::setCopyrightDate(const std::string &copyrightDate) {
-    this->copyrightDate_ = Date(copyrightDate);
+    this->copyrightDate_ = Date{copyrightDate};
 }
 
+// Overload operatore <<
 std::ostream& operator<<(std::ostream& output, const Book& bookObj) {
     return output << bookObj.title() << std::endl << bookObj.author() << std::endl << bookObj.ISBN() << std::endl << bookObj.copyrightDate();
 }
 
+// Overload operatore ==, confronto i due ISBN dei due oggetti di tipo Book
 bool operator==(const Book& bookLeft, const Book& bookRight) {
     return bookLeft.ISBN() == bookRight.ISBN();
 }
 
+// Overload operatore !=, confronto i due ISBN dei due oggetti di tipo Book
 bool operator!=(const Book& bookLeft, const Book& bookRight) {
     return bookLeft.ISBN() != bookRight.ISBN();
 }

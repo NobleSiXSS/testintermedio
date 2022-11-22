@@ -1,32 +1,42 @@
 #include <iostream>
 
-#ifndef TESTINTERMEDIO_DATE_H
-#define TESTINTERMEDIO_DATE_H
+#ifndef DATE_H
+#define DATE_H
 
 
 class Date {
 private:
-    int day_{};
-    int month_{};
-    int year_{};
-    static bool is_valid(int y, int m, int d);
-    //std::vector<std::string> split(string str, char del);
+    // Proprietà private
+    int day_;
+    int month_;
+    int year_;
 
 public:
-    
-    //costruttore di default
+    // Costruttore di default
     Date();
     
-    //costruttore
+    // Costruttore che ha come argomenti tre interi: (ANNO, MESE, GIORNO)
     Date(int y, int m, int d);
-    Date(std::string date);
-    
+    // Costruttore che ha come argomento una stringa in formato "ANNO/MESE/GIORNO"
+    Date(const std::string& stringDate);
+
+    // Funzione statica per controllare che una data sia corretta. Argomenti: (ANNO, MESE, GIORNO)
+    static bool is_valid(int y, int m, int d);
+    // Funzione statica per controllare che una data sia corretta. Argomenti: string "ANNO/MESE/GIORNO"
+    static bool is_valid(const std::string& stringDate);
+
+    // Funzioni getter
     int year() const;
     int month() const;
     int day() const;
-    
+
 };
 
+// Overload operatore <<
 std::ostream& operator<<(std::ostream& output, const Date& dateToPrint);
 
-#endif //TESTINTERMEDIO_DATE_H
+bool operator==(const Date &date1, const Date &date2);
+
+bool operator!=(const Date &date1, const Date &date2);
+
+#endif //DATE_H
