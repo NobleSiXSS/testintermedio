@@ -17,10 +17,10 @@ Book::Book(std::string authorName, std::string authorSurname, std::string title,
     if(!isValidISBN(ISBN)) {
         throw std::invalid_argument("ISBN format is not correct. NNN-NNN-NNN-C");
     }
-    this->authorName_ = authorName;
-    this->authorSurname_ = authorSurname;
+    this->author_surname_ = authorName;
+    this->author_name_ = authorSurname;
     this->title_ = title;
-    this->copyrightDate_ = Date(copyrightDate);
+    this->copyright_date_ = Date(copyrightDate);
     this->ISBN_ = ISBN;
     this->available_ = true;
 }
@@ -30,10 +30,10 @@ Book::Book(std::string authorName, std::string authorSurname, std::string title,
     if(!isValidISBN(ISBN)) {
         throw std::invalid_argument("ISBN format is not correct. NNN-NNN-NNN-C");
     }
-    this->authorName_ = authorName;
-    this->authorSurname_ = authorSurname;
+    this->author_surname_ = authorName;
+    this->author_name_ = authorSurname;
     this->title_ = title;
-    this->copyrightDate_ = copyrightDate;
+    this->copyright_date_ = copyrightDate;
     this->ISBN_ = ISBN;
     this->available_ = true;
 }
@@ -43,8 +43,8 @@ Book::Book(std::string authorName, std::string authorSurname, std::string title,
     if(!isValidISBN(ISBN)) {
         throw std::invalid_argument("ISBN format is not correct. NNN-NNN-NNN-C");
     }
-    this->authorName_ = authorName;
-    this->authorSurname_ = authorSurname;
+    this->author_surname_ = authorName;
+    this->author_name_ = authorSurname;
     this->title_ = title;
     this->ISBN_ = ISBN;
     this->available_ = true;
@@ -58,17 +58,17 @@ std::string Book::title() const {
     return this->title_;
 }
 std::string Book::author() const {
-    return this->authorName_ + " " + authorSurname_;
+    return this->author_surname_ + " " + author_name_;
 }
-std::string Book::authorName() const {
-    return this->authorName_;
+std::string Book::author_name() const {
+    return this->author_surname_;
 }
-std::string Book::authorSurname() const {
-    return this->authorSurname_;
+std::string Book::author_surname() const {
+    return this->author_name_;
 }
 
-Date Book::copyrightDate() const {
-    return this->copyrightDate_;
+Date Book::copyright_date() const {
+    return this->copyright_date_;
 }
 
 bool Book::available() const {
@@ -110,44 +110,41 @@ bool Book::isValidISBN(const std::string& ISBNToCheck) {
 }
 
 // Funzioni setter
-void Book::setAvailability(bool isAvailable) {
+void Book::set_available(bool isAvailable) {
     this->available_ = isAvailable;
 }
 
-void Book::setIsbn(const std::string &isbn) {
+void Book::set_ISBN(const std::string &isbn) {
     if(!isValidISBN(isbn)) {
         throw std::invalid_argument("ISBN format is not correct. NNN-NNN-NNN-C");
     }
     this->ISBN_ = isbn;
 }
 
-void Book::setTitle(const std::string &title) {
+void Book::set_title(const std::string &title) {
     this->title_ = title;
 }
 
-void Book::setAuthorName(const std::string &authorName) {
-    this->authorName_ = authorName;
+void Book::set_author_name(const std::string &authorName) {
+    this->author_surname_ = authorName;
 }
 
-void Book::setAuthorSurname(const std::string &authorSurname) {
-    this->authorSurname_ = authorSurname;
+void Book::set_author_surname(const std::string &authorSurname) {
+    this->author_name_ = authorSurname;
 }
 
-void Book::setAvailable(bool available) {
-    this->available_ = available;
+void Book::set_copyright_date(const Date &copyrightDate) {
+    this->copyright_date_ = copyrightDate;
 }
 
-void Book::setCopyrightDate(const Date &copyrightDate) {
-    this->copyrightDate_ = copyrightDate;
-}
-
-void Book::setCopyrightDate(const std::string &copyrightDate) {
-    this->copyrightDate_ = Date{copyrightDate};
+void Book::set_copyright_date(const std::string &copyrightDate) {
+    this->copyright_date_ = Date{copyrightDate};
 }
 
 // Overload operatore <<
 std::ostream& operator<<(std::ostream& output, const Book& bookObj) {
-    return output << bookObj.title() << std::endl << bookObj.author() << std::endl << bookObj.ISBN() << std::endl << bookObj.copyrightDate();
+    //return output << bookObj.title() << std::endl << bookObj.author() << std::endl << bookObj.ISBN() << std::endl << bookObj.copyright_date();
+    return output << "Titolo: "<<bookObj.title() << std::endl << "Autore: " << bookObj.author() << std::endl << "Codice ISBN: "<< bookObj.ISBN() << std::endl << "Data di Copyright: "<<bookObj.copyright_date();
 }
 
 // Overload operatore ==, confronto i due ISBN dei due oggetti di tipo Book

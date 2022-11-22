@@ -12,10 +12,10 @@ private:
     // Proprietà
     std::string ISBN_;
     std::string title_;
-    std::string authorName_;
-    std::string authorSurname_;
+    std::string author_surname_;
+    std::string author_name_;
     bool available_;
-    Date copyrightDate_;
+    Date copyright_date_;
 
 public:
     // Costruttori
@@ -35,21 +35,20 @@ public:
     // Funzioni getter
     std::string ISBN() const;
     std::string title() const;
-    std::string authorName() const;
-    std::string authorSurname() const;
+    std::string author_name() const;
+    std::string author_surname() const;
     std::string author() const;
     bool available() const;
-    Date copyrightDate() const;
+    Date copyright_date() const;
 
     // Funzioni setter
-    void setAvailability(bool isAvailable);
-    void setIsbn(const std::string &isbn);
-    void setTitle(const std::string &title);
-    void setAuthorName(const std::string &authorName);
-    void setAuthorSurname(const std::string &authorSurname);
-    void setAvailable(bool available);
-    void setCopyrightDate(const Date &copyrightDate);
-    void setCopyrightDate(const std::string &copyrightDate);
+    void set_ISBN(const std::string &isbn);
+    void set_title(const std::string &title);
+    void set_author_name(const std::string &authorName);
+    void set_author_surname(const std::string &authorSurname);
+    void set_available(bool isAvailable);
+    void set_copyright_date(const Date &copyrightDate);
+    void set_copyright_date(const std::string &copyrightDate);
 };
 
 // Overload operatori

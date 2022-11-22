@@ -11,6 +11,8 @@ int main()
     cout << "test anno bisestile" << "\n";
     Date d1{2012, 2, 29};
     cout << d1 << "\n";
+    d1.set_date("1954/5/30");
+    cout << d1 << "\n";
 
     cout << "test anno generico" << "\n";
     Date d2{2022, 11, 18};
@@ -60,20 +62,20 @@ int main()
     cout << "TEST DELLE FUNZIONI SET" << "\n";
     Book libro;
 
-    libro.setAuthorName("George");
+    libro.set_author_name("George");
 
-    libro.setAuthorSurname("Orwell");
+    libro.set_author_surname("Orwell");
 
-    libro.setTitle("La fattoria degli animali");
+    libro.set_title("La fattoria degli animali");
 
     Date publicationDay{1945,8,17};
 
-    libro.setCopyrightDate(publicationDay);
+    libro.set_copyright_date(publicationDay);
 
-    libro.setIsbn("978-015-107-2");
+    libro.set_ISBN("978-015-107-2");
 
     bool available=true;
-    libro.setAvailable(available);
+    libro.set_available(available);
 
     cout << libro << "\n";
 
@@ -87,20 +89,20 @@ int main()
     cout << " " << "\n";
 
     Book libro2;
-    libro2.setAuthorName("Alexandre");
+    libro2.set_author_name("Alexandre");
 
-    libro2.setAuthorSurname("Dumas");
+    libro2.set_author_surname("Dumas");
 
-    libro2.setTitle("I tre moschettieri");
+    libro2.set_title("I tre moschettieri");
 
     Date publication{1844,7,14};
 
-    libro2.setCopyrightDate(publication);
+    libro2.set_copyright_date(publication);
 
-    libro2.setIsbn("978-076-416-0");
+    libro2.set_ISBN("978-076-416-0");
 
     bool available2=false;
-    libro.setAvailable(available2);
+    libro.set_available(available2);
 
     cout << libro2 << "\n";
 

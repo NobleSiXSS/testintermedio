@@ -30,6 +30,14 @@ public:
     int month() const;
     int day() const;
 
+    // Funzioni setter
+    void set_day(int day);
+    void set_month(int month);
+    void set_year(int year);
+
+    void set_date(int y, int m, int d);
+    void set_date(const std::string& stringDate);
+    void set_date();
 };
 
 // Overload operatore <<

@@ -100,6 +100,60 @@ int Date::day() const{
     return day_;
 }
 
+// Funzioni setter
+void Date::set_day(int day) {
+    if(!is_valid(year_, month_, day)) {
+        throw std::invalid_argument("Date format is not correct");
+    }
+    day_ = day;
+}
+
+void Date::set_month(int month) {
+    if(!is_valid(year_, month, day_)) {
+        throw std::invalid_argument("Date format is not correct");
+    }
+    month_ = month;
+}
+
+void Date::set_year(int year) {
+    if(!is_valid(year, month_, day_)) {
+        throw std::invalid_argument("Date format is not correct");
+    }
+    year_ = year;
+}
+
+void Date::set_date(int y, int m, int d) {
+    // Se is_valid() restituisce false lancio un errore
+    if(!is_valid(y, m, d)) {
+        throw std::invalid_argument("Date format is not correct");
+    }
+    // Modifico le proprietà dell'oggetto
+    year_ = y;
+    month_ = m;
+    day_ = d;
+}
+
+void Date::set_date(const std::string& stringDate) {
+    // Ricevo dalla funzione splitDate un array di 3 elementi interi: [ANNO, MESE, GIORNO]
+    std::vector<int> arr = splitDate(stringDate);
+
+    // Se is_valid() restituisce false lancio un errore
+    if(!is_valid(arr[0], arr[1], arr[2])) {
+        throw std::invalid_argument("Date format is not correct");
+    }
+
+    // Modifico le proprietà dell'oggetto
+    year_ = arr[0];
+    month_ = arr[1];
+    day_ = arr[2];
+}
+
+void Date::set_date() {
+    year_ = 1970;
+    month_ = 1;
+    day_ = 1;
+}
+
 bool operator==(const Date &date1, const Date &date2) {
     return date1.day() == date2.day() &&
            date1.month() == date2.month() &&
