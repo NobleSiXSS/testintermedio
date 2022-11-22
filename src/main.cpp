@@ -11,6 +11,7 @@ int main()
     cout << "test anno bisestile" << "\n";
     Date d1{2012, 2, 29};
     cout << d1 << "\n";
+    cout << "TEST SET_DATE" << "\n";
     d1.set_date("1954/5/30");
     cout << d1 << "\n";
 
@@ -74,12 +75,11 @@ int main()
 
     libro.set_ISBN("978-015-107-2");
 
-    bool available=true;
-    libro.set_available(available);
+    libro.set_available(true);
 
     cout << libro << "\n";
 
-    if(available){
+    if(libro.available()){
         cout << "Il libro e' disponibile " << "\n";
     }
     else {
@@ -101,12 +101,11 @@ int main()
 
     libro2.set_ISBN("978-076-416-0");
 
-    bool available2=false;
-    libro.set_available(available2);
+    libro.set_available(false);
 
     cout << libro2 << "\n";
 
-    if(available2){
+    if(libro.available()){
         cout << "Il libro e' disponibile " << "\n";
     }
     else{
