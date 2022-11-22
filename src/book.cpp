@@ -1,9 +1,5 @@
-//
-// Created by Halo on 16/11/2022.
-//
-
-#include "book.h"
-#include "date.h"
+#include "../toinclude/book.h"
+#include "../toinclude/date.h"
 #include "iostream"
 
 // Costruttori

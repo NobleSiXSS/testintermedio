@@ -1,6 +1,13 @@
-cmake_minimum_required(VERSION 3.23)
-project(testintermedio)
+project(test-intermedio)
+cmake_minimum_required(VERSION 2.84)
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../bin/")
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(testintermedio main.cpp book.h date.h book.cpp date.cpp)
+include_directories(toinclude)
+
+add_library(${PROJECT_NAME} src/date.cpp src/book.cpp)
+
+add_executable(main src/main.cpp)
+
+target_link_libraries(main ${PROJECT_NAME})

@@ -1,7 +1,3 @@
-//
-// Created by Halo on 16/11/2022.
-//
-
 #include <iostream>
 #include "date.h"
 #ifndef BOOK_H
