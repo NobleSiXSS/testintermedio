@@ -1,4 +1,4 @@
-project(test-intermedio)
+project(NCS-test-intermedio)
 cmake_minimum_required(VERSION 2.84)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "../bin/")
